@@ -7,17 +7,23 @@ public class CleaningService {
 
     private CleaningTool cleaningTool;
 
-
-
     public CleaningService(CleaningTool cleaningTool) {
         this.cleaningTool = cleaningTool;
     }
 
+    public CleaningService() {
+
+    }
 
 
-    public void clean(){
+    public CleaningService setCleaningTool(CleaningTool cleaningTool) {
+        this.cleaningTool = cleaningTool;
+        return this;
+    }
 
-        System.out.println("Cleaning service is working" );
+    public void clean() {
+
+        System.out.println("Cleaning service is working");
         cleaningTool.doCleanJob();
 
     }
