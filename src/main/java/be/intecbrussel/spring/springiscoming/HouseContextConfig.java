@@ -1,15 +1,14 @@
 package be.intecbrussel.spring.springiscoming;
 
-import be.intecbrussel.spring.springiscoming.services.CleaningService;
+import be.intecbrussel.spring.springiscoming.services.*;
 import be.intecbrussel.spring.springiscoming.tools.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
+import org.springframework.stereotype.Component;
 
 @Configuration
+@ComponentScan("be.intecbrussel.spring.springiscoming")
 public class HouseContextConfig {
-
+/*
     @Bean(name = "bezen")
     @Scope("prototype")
     public CleaningTool broom() {
@@ -25,24 +24,19 @@ public class HouseContextConfig {
     @Bean(name = "sponge")
     @Scope("prototype")
     public CleaningTool sponge() {
-    return new Sponge();
+        return new Sponge();
+    }
+
+    @Bean
+    public GardeningTool lawnMower() {
+        return new LawnMover();
     }
 
     @Bean(name = "duster")
     @Scope("prototype")
-
     public CleaningTool duster() {
         return new DisposableDuster();
     }
-
-    /*@Bean(name = "dusterp")
-    @Scope("singleton")
-    public CleaningTool dusterProxy() {
-        return new DisposableDusterProxy();
-    }*/
-
-
-
 
     @Bean
     public CleaningService broomService() {
@@ -58,19 +52,22 @@ public class HouseContextConfig {
         return cleaningService;
     }
 
-    /*@Bean(name = "dusterP")
-    public CleaningService dusterService() {
-        CleaningService cleaningService = new CleaningService(vacume());
-        cleaningService.setCleaningTool(dusterProxy());
-        return cleaningService;
+
+    @Bean(initMethod = "init", destroyMethod = "destroy")
+    public GardeningService gardeningService(GardeningTool gardeningTool) {
+        GardeningSericeImpl gardeningService = new GardeningSericeImpl();
+        gardeningService.setGardeningTool(gardeningTool);
+        return gardeningService;
+
     }
 
-    @Bean
-    public CleaningService dusterServiceProxy() {
-        CleaningService cleaningService = new CleaningService(vacume());
-        cleaningService.setCleaningTool(dusterProxy());
-        return cleaningService;
-    }*/
 
+    @Bean(initMethod = "init", destroyMethod = "destroy")
+    public DomesticService domesticService() {
+        DomesticServiceImpl domesticService = new DomesticServiceImpl();
 
+        return domesticService;
+
+    }
+*/
 }

@@ -5,9 +5,11 @@ import be.intecbrussel.spring.springiscoming.services.GardeningService;
 import be.intecbrussel.spring.springiscoming.tools.GardeningTool;
 import be.intecbrussel.spring.springiscoming.tools.LawnMover;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+
+@ComponentScan("be.intecbrussel.spring.springiscoming")
 public class OutHouseContextConfig {
 
 
@@ -17,13 +19,15 @@ public class OutHouseContextConfig {
 
     }
 
-    @Bean
+    @Bean(initMethod = "init" ,destroyMethod = "destroy")
     public GardeningService gardeningService(GardeningTool gardeningTool){
         GardeningSericeImpl gardeningService = new GardeningSericeImpl();
         gardeningService.setGardeningTool(gardeningTool);
-
+        gardeningService.init();
         return gardeningService;
 
         }
+
+
     }
 

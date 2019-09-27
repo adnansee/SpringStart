@@ -5,6 +5,7 @@ import be.intecbrussel.spring.springiscoming.tools.GardeningTool;
 public class GardeningSericeImpl implements GardeningService {
     private GardeningTool gardeningTool;
 
+
     public GardeningSericeImpl setGardeningTool(GardeningTool gardeningTool) {
         this.gardeningTool = gardeningTool;
         return this;
@@ -12,6 +13,17 @@ public class GardeningSericeImpl implements GardeningService {
 
     @Override
     public void garden() {
-        System.out.println("LETS GET GREEN!");
+        System.out.println("LETS GET GREEN!-----WORKING IN THE GARDEN");
+        gardeningTool.doGardenJob();
+    }
+
+    public void init(){
+        System.out.println("Gardening Service preparing for running");
+
+
+    }
+    public void destroy(){
+        System.out.println("Gardening Service cleaning up");
+
     }
 }
